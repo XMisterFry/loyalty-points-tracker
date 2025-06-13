@@ -1,0 +1,120 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 500px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    margin-top: 25px;
+    width: 100%;
+    background: #800000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #800000;
+  }
+  
+  #responseMsg {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: green;
+  }
+
+  /* Maroon-themed topbar */
+.topbar {
+  background-color: #800000; /* Maroon */
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Maroon-themed buttons */
+.topbar button {
+  background-color: #a52a2a; /* Darker maroon */
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.topbar button:hover {
+  background-color: #911a1a; /* Slightly darker on hover */
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f9f6f6;
+}
+.ledger-buttons {
+  display: grid;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px;
+}
+
+.ledger-buttons button {
+  background-color: #a52a2a;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.ledger-buttons button:hover {
+  background-color: #911a1a;
+}
+
+#ledger-container {
+  margin: 30px auto;
+  max-width: 90%;
+  text-align: center;
+}

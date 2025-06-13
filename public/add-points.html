@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Loyalty Points</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <button onclick="location.href='add-points.html'">Add Points</button>
+    <button onclick="location.href='redeem-points.html'">Redeem Points</button>
+    <button onclick="location.href='view-ledgers.html'">View Ledger</button>
+  </div>
+  <h1> unanico Loyalty Points Scheme 2025-2026</h1>
+  <div class="container">
+    <h2>Add Loyalty Points</h2>
+    <form id="pointsForm">
+      <label for="distributor">Distributor</label>
+      <input type="text" id="distributor" name="distributor" required>
+
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="invoice">Invoice Number</label>
+      <input type="text" id="invoice" name="invoice" required>
+
+      <label for="points">Points</label>
+      <input type="number" id="points" name="points" required>
+
+      <button type="submit">Submit</button>
+    </form>
+    <p id="responseMsg"></p>
+  </div>
+</body>
+</html>
