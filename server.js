@@ -30,9 +30,11 @@ app.get('/add', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'add-points.html'));
   });
   
-  app.get('/redeem', (req, res) => {
+app.get('/redeem', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'redeem-points.html'));
   });
+
+
 app.get('/view-ledgers/:distributor', async (req,res)=> {
 const distributor = req.params.distributor
 try {
