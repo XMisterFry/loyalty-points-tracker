@@ -26,13 +26,17 @@ app.use (cors());
 app.use (express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/add', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'add-points.html'));
-  });
+// app.get('/public/add.html', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'add.html'));
+//   });
   
-app.get('/redeem', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'redeem-points.html'));
-  });
+// app.get('/public/redeem.html', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'redeem.html'));
+//   });
+//   app.get('/public/ledger-list.html', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'ledger-list.html'));
+//   });
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/view-ledgers/:distributor', async (req,res)=> {
