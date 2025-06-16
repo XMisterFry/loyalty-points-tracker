@@ -11,5 +11,5 @@ type : { type : String, enum : ["Earned", "Redeemed"], required : true},
 points : {type : Number, required : true}
 
 });
-
-module.exports = mongoose.model ('Ledger', ledgerSchema)
+const Ledger = mongoose.model ('Ledger', ledgerSchema)
+module.exports = Ledger;    

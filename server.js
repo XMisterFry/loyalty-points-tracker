@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require ("express")
 const mongoose = require ("mongoose")
-let ledgerModel = require ('./db')
+let Ledger = require ('./db')
 const path = require('path');
 
 async function main() {
@@ -26,23 +26,12 @@ app.use (cors());
 app.use (express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/public/add.html', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'add.html'));
-//   });
-  
-// app.get('/public/redeem.html', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'redeem.html'));
-//   });
-//   app.get('/public/ledger-list.html', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'ledger-list.html'));
-//   });
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/view-ledgers/:distributor', async (req,res)=> {
 const distributor = req.params.distributor
 try {
-const entries = await ledgerModel.find({distributor}).sort({date:1});
+const entries = await Ledger.find({distributor}).sort({date:1});
 
 let balance = 0;
 let ledger = entries.map (entry => {
@@ -75,10 +64,11 @@ catch (error) {
 })
 
 app.post ('/add-points', async (req,res)=> {
-let {distributor, date, invoice, points} = req.body;
+let {distributor, date, invoice} = req.body;
 let type = "Earned";
+let points = Number(req.body.points);
 try {
-    const ledgerEntry = await ledgerModel.create({
+    const ledgerEntry = await Ledger.create({
         distributor, date, invoice, type, points 
     })
 
@@ -94,10 +84,11 @@ catch {
 })
 
 app.post ('/redeem-points', async (req,res) => {
-    let {distributor, date, invoice, points} = req.body;
+    let {distributor, date, invoice} = req.body;
 let type = "Redeemed"
+let points = Number(req.body.points);
     try {
-        const ledgerEntry = await ledgerModel.create({
+        const ledgerEntry = await Ledger.create({
             distributor, date, invoice, type, points 
         })
     
@@ -113,4 +104,3 @@ let type = "Redeemed"
 })
 
 
-app.listen(3000)
