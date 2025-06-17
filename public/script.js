@@ -18,7 +18,7 @@
 
        
         document.getElementById('pointsForm').reset();
-        console.log("Success")
+        console.log("Success at frontend")
     })
     .catch (()=>{
       alert("Some error occurred!")
@@ -47,10 +47,12 @@ let addPoints= async (event) => {
 
      
       document.getElementById('pointsForm').reset();
-      console.log("Success")
+      console.log("Success at frontend")
   })
   .catch (()=>{
     alert("Some error occurred!")
   })
 
   }
+  
+

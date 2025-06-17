@@ -40,7 +40,7 @@ let ledger = entries.map (entry => {
     if (entry.type==="Earned") {
         earned = entry.points
     }
-    if (entry.type === 'Redeemed') {
+    else if (entry.type === "Redeemed") {
         redeemed = entry.points;
       }
 
@@ -73,7 +73,7 @@ try {
     })
 
     res.json ({
-        success : 'Entry Sucessful!'
+        success : 'Entry Sucessful at Backend!'
     })
 } 
 catch {
@@ -93,7 +93,7 @@ let points = Number(req.body.points);
         })
     
         res.json ({
-            success : 'Entry Sucessful!'
+            success : 'Entry Sucessful at Backend!'
         })
     } 
     catch {

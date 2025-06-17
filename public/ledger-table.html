@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ledger</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: maroon; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: maroon;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+    <div class="topbar">
+        <button onclick="location.href='add.html'">Add Points</button>
+        <button onclick="location.href='redeem.html'">Redeem Points</button>
+        <button onclick="location.href='ledger-list.html'">View Ledger</button>
+      </div>
+    
+  <h2>Ledger Entries</h2>
+  <h3 id="distName"> </h3>
+  <table id="ledgerTable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Invoice</th>
+        <th>Earned</th>
+        <th>Redeemed</th>
+        <th>Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be injected here -->
+    </tbody>
+  </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="ledger.js"> </script>
+</body>
+</html>
