@@ -24,13 +24,20 @@
 </head>
 <body>
     <div class="topbar">
+        <img src="/unanico-logo.png" alt="unanico-logo" class="logo">
+    
+        <div class="menu-buttons">
         <button onclick="location.href='add.html'">Add Points</button>
         <button onclick="location.href='redeem.html'">Redeem Points</button>
         <button onclick="location.href='ledger-list.html'">View Ledger</button>
-      </div>
+        </div>
     
+      </div>
+
+    <div id="printArea"> 
   <h2>Ledger Entries</h2>
   <h3 id="distName"> </h3>
+  
   <table id="ledgerTable">
     <thead>
       <tr>
@@ -45,6 +52,8 @@
       <!-- Rows will be injected here -->
     </tbody>
   </table>
+  </div>
+  <button onclick="printTable()">Print Table</button>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="ledger.js"> </script>

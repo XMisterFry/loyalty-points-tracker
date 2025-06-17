@@ -27,3 +27,14 @@
    } else {
      document.body.innerHTML = "<p>No distributor selected.</p>";
    }
+
+   function printTable() {
+    const printContents = document.getElementById('printArea').innerHTML;
+    const originalContents = document.body.innerHTML;
+  
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    location.reload(); // reload to reattach event listeners
+  }
+  
