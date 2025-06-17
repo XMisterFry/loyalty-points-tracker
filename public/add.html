@@ -15,7 +15,7 @@
   <h1> unanico Loyalty Points Scheme 2025-2026</h1>
   <div class="container">
     <h2>Add Loyalty Points</h2>
-    <form id="pointsForm">
+    <form id="pointsForm" onsubmit="addPoints(event)">
       <label for="distributor">Distributor</label>
       <select id="distributor" name="distributor" required>
         <option value="select"> --Select--</option>
@@ -43,7 +43,9 @@
   </div>
 
 <script>
-  let addPoints= async () => {
+  let addPoints= async (event) => {
+
+    event.preventDefault();
     let distributor=document.getElementById("distributor").value;
     let date = document.getElementById("date").value
     let invoice=document.getElementById("invoice").value
@@ -58,7 +60,7 @@
     .then (()=>{
       document.getElementById('responseMsg').value = "Points added Successfully!";
      
-      document.getElementById('addForm').reset();
+      document.getElementById('pointsForm').reset();
       console.log("Success")
   })
   .catch (()=>{

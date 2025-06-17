@@ -16,7 +16,7 @@
   <h1> unanico Loyalty Points Scheme 2025-2026</h1>
   <div class="container">
     <h2>Redeem Loyalty Points</h2>
-    <form id="pointsForm">
+    <form id="pointsForm" onsubmit="addPoints(event)">
       <label for="distributor">Distributor</label>
       <select id="distributor" name="distributor" required>
         <option value="select"> --Select--</option>
@@ -38,9 +38,36 @@
       <label for="points">Points</label>
       <input type="number" id="points" name="points" required>
 
-      <button type="submit">Submit</button>
+      <button onclick="redeemPoints()" type="submit">Submit</button>
     </form>
     <p id="responseMsg"></p>
   </div>
+
+  <script>
+    let redeemPoints= async (event) => {
+      event.preventDefault();
+      let distributor=document.getElementById("distributor").value;
+      let date = document.getElementById("date").value
+      let invoice=document.getElementById("invoice").value
+      let points= document.getElementById("points").value;
+  
+      await axios.post ('/redeem-points', {
+        distributor,
+        date,
+        invoice,
+        points
+      })
+      .then (()=>{
+        document.getElementById('responseMsg').value = "Points redeemed Successfully!";
+       
+        document.getElementById('pointsForm').reset();
+        console.log("Success")
+    })
+    .catch (()=>{
+      alert("Some error occurred!")
+    })
+  
+    }
+  </script>
 </body>
 </html>
