@@ -8,7 +8,8 @@ distributor : {type : String, enum : ["MS Brothers", "Aarz Sales", "SH Agency",
     date : {type: Date, required : true},
 invoice : {type : String},
 type : { type : String, enum : ["Earned", "Redeemed"], required : true},
-points : {type : Number, required : true}
+points : {type : Number, required : true},
+lapsed: { type: Boolean, default: false }
 
 });
 const Ledger = mongoose.model ('Ledger', ledgerSchema)

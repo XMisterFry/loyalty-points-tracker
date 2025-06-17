@@ -28,40 +28,71 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.get('/view-ledgers/:distributor', async (req,res)=> {
-const distributor = req.params.distributor
-try {
-const entries = await Ledger.find({distributor}).sort({date:1});
-
-let balance = 0;
-let ledger = entries.map (entry => {
-    let earned=0
-    let redeemed= 0
-    if (entry.type==="Earned") {
-        earned = entry.points
+app.get('/view-ledgers/:distributor', async (req, res) => {
+    const distributor = req.params.distributor;
+  
+    try {
+      const entries = await Ledger.find({
+        distributor,
+        lapsed: false
+      }).sort({ date: 1 });
+  
+      let balance = 0;
+  
+      const ledger = entries.map(entry => {
+        let earned = 0;
+        let redeemed = 0;
+  
+        if (entry.type === "Earned") {
+          earned = entry.points;
+        } else if (entry.type === "Redeemed") {
+          redeemed = entry.points;
+        }
+  
+        const balanceChange = earned - redeemed;
+        balance += balanceChange;
+  
+        const today = new Date();
+        const expiryDate = new Date(entry.date);
+        expiryDate.setDate(expiryDate.getDate() + 30);
+  
+        const timeToExpiry = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
+        const willExpireSoon = timeToExpiry <= 7 && timeToExpiry > 0;
+  
+        return {
+          id: entry._id,
+          date: entry.date,
+          invoice: entry.invoice,
+          earned,
+          redeemed,
+          balance,
+          balanceChange,
+          expiryDate,
+          willExpireSoon,
+          type: entry.type
+        };
+      });
+  
+      res.json(ledger);
+    } catch (error) {
+      console.error("Error fetching ledger:", error);
+      res.status(500).json({ error: "Something went wrong" });
     }
-    else if (entry.type === "Redeemed") {
-        redeemed = entry.points;
-      }
+  });
+  
 
-    balance += (earned-redeemed);
 
-    return {
-        date: entry.date,
-        invoice: entry.invoice,
-        earned,
-        redeemed,
-        balance
+
+
+app.post('/lapse-points/:id', async (req, res) => {
+    try {
+      await Ledger.findByIdAndDelete(req.params.id);
+      res.json({ success: 'Entry lapsed successfully!' });
+    } catch (error) {
+      res.status(500).json({ error: 'Lapse failed' });
     }
-})
-
-res.json (ledger)
-
-}
-catch (error) {
-        res.status(500).json({ error: 'Something went wrong' });
-}
-})
+  });
+  
 
 app.post ('/add-points', async (req,res)=> {
 let {distributor, date, invoice} = req.body;
