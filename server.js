@@ -4,6 +4,9 @@ const mongoose = require ("mongoose")
 let Ledger = require ('./db')
 const path = require('path');
 
+
+
+
 async function main() {
         try {
           await mongoose.connect(process.env.MONGO_URI);
@@ -24,6 +27,26 @@ const cors = require ("cors")
 const app = express (); 
 app.use (cors());
 app.use (express.json());
+
+const auth = require('basic-auth');
+
+const USERNAME = process.env.APP_USER || 'admin';
+const PASSWORD = process.env.APP_PASS || 'secret';
+
+// Middleware to protect all routes
+app.use((req, res, next) => {
+  const user = auth(req);
+
+  if (!user || user.name !== USERNAME || user.pass !== PASSWORD) {
+    res.set('WWW-Authenticate', 'Basic realm="Restricted Area"');
+    return res.status(401).send('Access denied');
+  }
+
+  next();
+});
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 
