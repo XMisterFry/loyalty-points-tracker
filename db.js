@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 let ledgerSchema = new Schema ({
 distributor : {type : String, enum : ["MS Brothers", "Aarz Sales", "SH Agency", 
-    "Rabbani Jaipur", "Sri Mukat Krishna", "Babbar Medical", "Jalees & CO"],required :true},
+    "Rabbani Jaipur", "Sri Mukat Krishna", "Babbar Medical", "Jalees & CO", "Daryabadi Dawakhana", "Hira Enterprises"],required :true},
     date : {type: Date, required : true},
 invoice : {type : String},
 type : { type : String, enum : ["Earned", "Redeemed"], required : true},
